@@ -1,0 +1,2 @@
+# Ignore docker volumefiles.
+/docker/*/volume
