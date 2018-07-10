@@ -22,9 +22,10 @@ RUN adduser -D rails \
 USER rails
 WORKDIR /usr/src/app
 
-RUN yarn install
-
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs=4
+
+COPY .postcssrc.yml package.json yarn.lock ./
+RUN yarn install
 
 CMD ["rails", "-v"]
