@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
-load Gem.bin_path('bundler', 'bundle')
+if system('which docker-compose > /dev/null 2>&1')
+  system "bin/docker-compose #{$0.split('/').last} #{ARGV.join(' ')}"
+else
+  ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
+  load Gem.bin_path('bundler', 'bundle')
+end

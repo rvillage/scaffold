@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
-require_relative '../config/boot'
-require 'rake'
-Rake.application.run
+if system('which docker-compose > /dev/null 2>&1')
+  system "bin/docker-compose #{$0.split('/').last} #{ARGV.join(' ')}"
+else
+  require_relative '../config/boot'
+  require 'rake'
+  Rake.application.run
+end
