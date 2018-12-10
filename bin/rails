@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+if system('which docker-compose > /dev/null 2>&1')
+  system "bin/docker-compose #{$0.split('/').last} #{ARGV.join(' ')}"
+else
+  APP_PATH = File.expand_path('../config/application', __dir__)
+  require_relative '../config/boot'
+  require 'rails/commands'
+end

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+echo -e "== Executing docker-compose commands =="
+if [[ "$@" = "rails server" ]] || [[ "$@" = "rails s" ]]; then
+  docker-compose run --rm --service-ports web "$@"
+else
+  docker-compose run --rm --entrypoint "" web "$@"
+fi
